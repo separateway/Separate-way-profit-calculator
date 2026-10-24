@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Separate Way | Amazon India FBA Profit Calculator</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="top">
+  <h1>Separate Way</h1>
+  <p>Amazon India FBA profit calculator. All results are estimates.</p>
+</header>
+<main>
+  <section id="form" aria-label="Inputs">
+    <div class="card">
+      <h2>Settings</h2>
+      <label class="fld"><span>Fulfilment method for main results</span>
+        <select id="mode"><option value="fba">Fulfilled by Amazon (FBA)</option><option value="es">Easy Ship</option></select></label>
+      <label class="chk"><input type="checkbox" id="itc" checked> Claim input tax credit (ITC) on purchase, packaging and Amazon fees</label>
+      <label class="chk"><input type="checkbox" id="refInc" checked> Referral fee is charged on the GST-inclusive price</label>
+    </div>
+  </section>
+  <aside class="out" aria-live="polite">
+    <div class="hero">
+      <span class="tag" id="tag">Estimated</span>
+      <div class="big" id="profit">-</div>
+      <p>net profit per unit</p>
+      <div class="kpis" id="kpis"></div>
+    </div>
+    <div class="card"><h2>Break-even and target price</h2><div id="targets"></div></div>
+    <div class="card"><h2>Advertising limits</h2><div id="adlim"></div></div>
+    <div class="card"><h2>FBA vs Easy Ship</h2><div class="scroll"><table id="cmp"></table></div></div>
+    <div class="card"><h2>Per-unit breakdown</h2><div id="brk"></div></div>
+    <div class="card" id="actualCard" hidden><h2>Estimated vs actual</h2><div id="act"></div></div>
+    <div class="card">
+      <h2>Saved products</h2>
+      <div class="save"><input id="pname" placeholder="Product name, e.g. 6-piece dinner set" maxlength="60"><button id="saveBtn">Save</button></div>
+      <p class="err" id="saveErr"></p>
+      <div id="saved"></div>
+      <button id="csvBtn" class="ghost">Download CSV</button>
+    </div>
+  </aside>
+  <details class="card formulas">
+    <summary>How every number is calculated</summary>
+    <ul>
+      <li><b>Net revenue (ex-GST)</b> = Selling price ÷ (1 + product GST rate). The GST part is collected for the government, not your income.</li>
+      <li><b>Purchase and packaging cost</b> = cost ex-GST. If ITC is off, the input GST is added as a cost. If ITC is on, it is excluded so recoverable GST is never counted twice.</li>
+      <li><b>Referral fee</b> = rate × selling price (GST-inclusive or ex-GST, per your setting). FBA/Easy Ship, storage and inbound fees are entered ex-GST.</li>
+      <li><b>GST on Amazon services</b> = (referral + fulfilment + storage + inbound + ads) × fee GST rate. Cost only when ITC is off.</li>
+      <li><b>Returns and damage</b> = allowance % × net revenue.</li>
+      <li><b>Net profit</b> = net revenue − purchase − packaging − Amazon fees − unrecovered GST − ads − returns − other.</li>
+      <li><b>Margin</b> = profit ÷ net revenue. <b>ROI</b> = profit ÷ (purchase + packaging + storage + inbound).</li>
+      <li><b>Break-even and target price</b>: profit is a straight line of the selling price, so the tool solves it exactly (profit = 0, or profit = target).</li>
+      <li><b>Max ad spend</b> = profit before ads ÷ (1 + unrecovered GST on ads). <b>Break-even ACoS</b> = max ad spend ÷ selling price.</li>
+      <li><b>Estimated vs actual</b>: this tool only estimates. Enter the real profit from your Amazon settlement report to see the gap.</li>
+    </ul>
+  </details>
+</main>
+<div class="bar"><span>Est. profit / unit</span><b id="barp">-</b></div>
+<script src="script.js"></script>
+</body>
+</html>
